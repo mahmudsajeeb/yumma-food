@@ -7,14 +7,12 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 function Register() {
   const [error, setError] = useState('')
-//   const [success, setSuccess] = useState('')
-//   const [accept, setAccept] = useState(false)
-//   console.log(accept)
-
+ 
  const {createUser } = useContext(AuthContext)
 
  const handleRegister = (e)=>{
     e.preventDefault()
+    setError('')
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
@@ -28,7 +26,8 @@ function Register() {
      createUser(email, password)
       .then(result => {
         const createUser = result.user
-        console.log(createUser)
+        const photoURL = user.photoURL;
+        console.log(createUser,photoURL)
         //   verifyEmail(userDetails.user)
         //   setSuccess(`A verification mail sent to ${userDetails.user.email}`)
       })
@@ -38,36 +37,7 @@ function Register() {
       })
  }
   
-//   const handleSignup = (e) => {
-//       e.preventDefault()
-//       setError('')
-//       setSuccess('')
-
-      
-//       if(password.length < 6){
-//           setError('At least 6 characters')
-//           return
-//       }
-//       else if(!(password === confirm)){
-//           setError('Password did not match')
-//           return
-//       }
-
-//       createUser(email, password)
-//       .then(userDetails => {
-//           verifyEmail(userDetails.user)
-//           setSuccess(`A verification mail sent to ${userDetails.user.email}`)
-//       })
-//       .catch(error => {
-//           console.log(error.message)
-//           setError(error.message)
-//       })
-//   }
-
-//   const handleAccept = (event) => {
-//       const clicked = event.target.checked
-//       setAccept(clicked)
-//   }
+ 
   
   return (
     <div>

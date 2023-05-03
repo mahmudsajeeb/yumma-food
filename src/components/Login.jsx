@@ -1,10 +1,24 @@
 import React, { useContext } from 'react' 
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../firebase.config';
 
 function Login() {
+  const auth = getAuth(app)
+  console.log(app)
   const {signIn} = useContext(AuthContext)
 
+  const provider = new GoogleAuthProvider()
+  const handleGoogle =()=>{
+      signInWithPopup(auth,provider)
+      .then(result =>{
+        const signUser = result.user
+        console.log(signUser)
+      }).catch(error =>{
+        console.log(error,error.message)
+      })
+  }
   const handleLogin =(e)=>{
     e.preventDefault()
     const form = e.target; 
@@ -56,7 +70,11 @@ function Login() {
       <p className="inline-block align-baseline font-bold text-sm  " >
           Don't Have Account?<Link to='/register'>Register</Link>
         </p>
+        <br />
+        <button className='btn btn-outline btn-error' onClick={handleGoogle}>Sign in Google</button>
+
     </form>
+
     </div>
   )
 }

@@ -10,7 +10,7 @@ import { AuthContext } from '../Provider/AuthProvider'
            
           <Link to='/' className="btn btn-ghost normal-case text-xl">Yumma</Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center   lg:flex">
           <ul className=" m-6 flex px-1">
             <li> 
             {/* <NavLink
