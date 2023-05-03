@@ -1,5 +1,7 @@
 import React from 'react' 
 import './Home.css'
+import LatestArticle from './LatestArticle'
+import Quote from './Quote'
 function Home() {
   return (
     <>
@@ -10,7 +12,9 @@ function Home() {
         <p className='text-2xl'>Spaghetti carbonara is a delicious and satisfying dish that is easy to <br />make and perfect for any occasion.</p>
       </div>
     </div>
- 
+    <Quote />
+    <LatestArticle />
+    
     </>
   )
 }
