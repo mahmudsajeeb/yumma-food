@@ -1,25 +1,48 @@
 import { useContext } from "react";
 import { useState } from "react"; 
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
  
 
 
 function Register() {
-//   const [error, setError] = useState('')
+  const [error, setError] = useState('')
 //   const [success, setSuccess] = useState('')
 //   const [accept, setAccept] = useState(false)
 //   console.log(accept)
 
-//   const {createUser, verifyEmail } = useContext(AuthContext)
+ const {createUser } = useContext(AuthContext)
+
+ const handleRegister = (e)=>{
+    e.preventDefault()
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value; 
+    const password = form.password.value;
+    console.log(name,photo,email,password)
+          if(password.length < 6){
+                setError('At least 6 characters')
+                return
+            }
+     createUser(email, password)
+      .then(result => {
+        const createUser = result.user
+        console.log(createUser)
+        //   verifyEmail(userDetails.user)
+        //   setSuccess(`A verification mail sent to ${userDetails.user.email}`)
+      })
+      .catch(error => {
+          console.log(error.message)
+        //   setError(error.message)
+      })
+ }
   
 //   const handleSignup = (e) => {
 //       e.preventDefault()
 //       setError('')
 //       setSuccess('')
-//       const form = e.target;
-//       const email = form.email.value;
-//       const confirm = form.confirm.value;
-//       const password = form.password.value;
+
       
 //       if(password.length < 6){
 //           setError('At least 6 characters')
@@ -48,7 +71,7 @@ function Register() {
   
   return (
     <div>
-              <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <form onSubmit={handleRegister} className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
           Name
@@ -102,9 +125,9 @@ function Register() {
         </button>
       </div>
       <p className="inline-block align-baseline font-bold text-sm  " >
-          Already have an account?<Link to='/login'>Register</Link>
+          Already have an account?<Link to='/login'>Login</Link>
         </p>
-        
+        <p className="text-red-600">{error}</p>
     </form>
     
     </div>

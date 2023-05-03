@@ -1,39 +1,31 @@
-import React from 'react'
-import { Input } from 'daisyui';
+import React, { useContext } from 'react' 
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 function Login() {
+  const {signIn} = useContext(AuthContext)
+
+  const handleLogin =(e)=>{
+    e.preventDefault()
+    const form = e.target; 
+    const email = form.email.value; 
+    const password = form.password.value;
+    console.log( email,password)
+
+    signIn(email,password)
+    .then(result =>{
+      const loggUser = result.user;
+      console.log(loggUser)
+    }).catch(error =>{
+      console.log(error.message)
+    })
+  }
   return (
-    // <div>
-    //     <form className="max-w-md mx-auto"  >
-    //   <div className="grid gap-4">
-    //     <div>
-    //       <label className="text-gray-700">Email</label>
-    //       <Input
-    //         type="email"
-            
-             
-    //         placeholder="Enter your email"
-    //       />
-    //     </div>
-    //     <div>
-    //       <label className="text-gray-700">Password</label>
-    //       <Input
-    //         type="password"
-             
-    //         placeholder="Enter your password"
-    //       />
-    //     </div>
-    //     <button type="submit" className="btn btn-primary w-full">
-    //       Login
-    //     </button>
-    //   </div>
-    // </form>
-    // </div>
+    
     <div>
     <h1 className='text-center text-4xl'>Please Login</h1>
       
-      <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleLogin} className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
           Email
@@ -58,12 +50,11 @@ function Login() {
       </div>
       <div className="flex items-center justify-between">
       <button className="btn btn-outline w-full btn-error">Login</button>
-
-        
+  
       </div>
       
       <p className="inline-block align-baseline font-bold text-sm  " >
-          Don't Have Account?<Link to='/register'>Login</Link>
+          Don't Have Account?<Link to='/register'>Register</Link>
         </p>
     </form>
     </div>
