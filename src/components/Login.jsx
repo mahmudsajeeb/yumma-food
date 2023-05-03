@@ -1,7 +1,7 @@
 import React, { useContext } from 'react' 
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../firebase.config';
 
 function Login() {
@@ -9,15 +9,26 @@ function Login() {
   console.log(app)
   const {signIn} = useContext(AuthContext)
 
-  const provider = new GoogleAuthProvider()
+  const gooleprovider = new GoogleAuthProvider()
   const handleGoogle =()=>{
-      signInWithPopup(auth,provider)
+      signInWithPopup(auth,gooleprovider)
       .then(result =>{
         const signUser = result.user
         console.log(signUser)
       }).catch(error =>{
         console.log(error,error.message)
       })
+  }
+
+  const githubProvider = new GithubAuthProvider()
+  const handleGithub =()=>{
+    signInWithPopup(auth,githubProvider)
+    .then(result =>{
+      const signUser = result.user
+      console.log(signUser)
+    }).catch(error =>{
+      console.log(error,error.message)
+    })
   }
   const handleLogin =(e)=>{
     e.preventDefault()
@@ -72,6 +83,7 @@ function Login() {
         </p>
         <br />
         <button className='btn btn-outline btn-error' onClick={handleGoogle}>Sign in Google</button>
+        <button className='btn btn-outline btn-error' onClick={handleGithub}>Sign in Github</button>
 
     </form>
 
