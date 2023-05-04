@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import LatestArticle from './LatestArticle'
 import Quote from './Quote'
+import Chef from './Chef'
 function Home() {
   return (
     <>
@@ -13,6 +14,7 @@ function Home() {
       </div>
     </div>
     <Quote />
+    <Chef />
     <LatestArticle />
     
     </>
