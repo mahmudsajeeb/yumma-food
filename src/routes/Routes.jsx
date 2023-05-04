@@ -32,7 +32,7 @@ const router = createBrowserRouter([
      {
       path:"/chefrecipes/:id",
       element:<ChefRecipes />,
-      loader:()=>fetch(`http://localhost:2000/chef/`)
+      loader:({params})=>fetch(`https://server-one-psi-90.vercel.app/chef/${params.id}`)
      }
     ]
   },

@@ -1,46 +1,46 @@
 import React from 'react'
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import pdfMake from 'pdfmake/build/pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function Blog() {
-  function generatePDF() {
-  const docDefinition = {
-    content: [
-      { text: 'My PDF', style: 'header' },
-      { text: 'This is an example PDF generated with pdfmake and React', style: 'subheader' },
-      {
-        table: {
-          headerRows: 1,
-          widths: ['*', 'auto', 100, '*'],
-          body: [
-            ['First Name', 'Last Name', 'Age', 'Email'],
-            ['John', 'Doe', 30, 'john@example.com'],
-            ['Jane', 'Doe', 25, 'jane@example.com'],
-            ['Bob', 'Smith', 50, 'bob@example.com'],
-          ]
-        }
-      }
-    ],
-    styles: {
-      header: {
-        fontSize: 18,
-        bold: true,
-        margin: [0, 0, 0, 10]
-      },
-      subheader: {
-        fontSize: 14,
-        bold: true,
-        margin: [0, 10, 0, 5]
-      }
-    }
-  };
+//   function generatePDF() {
+//   const docDefinition = {
+//     content: [
+//       { text: 'My PDF', style: 'header' },
+//       { text: 'This is an example PDF generated with pdfmake and React', style: 'subheader' },
+//       {
+//         table: {
+//           headerRows: 1,
+//           widths: ['*', 'auto', 100, '*'],
+//           body: [
+//             ['First Name', 'Last Name', 'Age', 'Email'],
+//             ['John', 'Doe', 30, 'john@example.com'],
+//             ['Jane', 'Doe', 25, 'jane@example.com'],
+//             ['Bob', 'Smith', 50, 'bob@example.com'],
+//           ]
+//         }
+//       }
+//     ],
+//     styles: {
+//       header: {
+//         fontSize: 18,
+//         bold: true,
+//         margin: [0, 0, 0, 10]
+//       },
+//       subheader: {
+//         fontSize: 14,
+//         bold: true,
+//         margin: [0, 10, 0, 5]
+//       }
+//     }
+//   };
 
-  pdfMake.createPdf(docDefinition).download();
-}
+//   pdfMake.createPdf(docDefinition).download();
+// }
   return (
     <>
       <div className='text-end my-container'>
-      <button className='btn' onClick={generatePDF}>Generate PDF</button>
+      {/* <button className='btn' onClick={generatePDF}>Generate PDF</button> */}
     </div>
   
     <div className='text-center my-container  '>
