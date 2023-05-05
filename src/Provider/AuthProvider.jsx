@@ -48,8 +48,7 @@ useEffect(()=>{
     signIn,
     googleLogin,
     githubLogin,
-    logOut,
-    setUser
+    logOut
   }
   return (
     <AuthContext.Provider value={authInfo}>

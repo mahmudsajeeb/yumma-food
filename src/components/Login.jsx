@@ -1,16 +1,13 @@
-import React, { useContext, useState } from 'react' 
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react' 
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 // import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 // import app from '../firebase.config';
 
 function Login() {
-  const [success, setSuccess] = useState('')
   // const auth = getAuth(app)
   // console.log(app)
-  const location = useLocation()
-  const from = location.state?.pathname || '/'
-  const {signIn,googleLogin,githubLogin,setUser} = useContext(AuthContext)
+  const {signIn,googleLogin,githubLogin} = useContext(AuthContext)
 
  const navigate = useNavigate()
 
@@ -29,8 +26,7 @@ function Login() {
         .then(res => {
             const loggedUser = res.user;
             setUser(loggedUser)
-            setSuccess('Successfully logged in')
-            navigate(from)
+            navigate('/')
         })
         .catch(error => {
             console.log(error.message)
@@ -52,8 +48,7 @@ function Login() {
         .then(res => {
             const loggedUser = res.user;
             setUser(loggedUser)
-            setSuccess('Successfully logged in')
-            navigate(from)
+            navigate('/')
         })
         .catch(error => {
             console.log(error)
@@ -69,9 +64,8 @@ function Login() {
     signIn(email,password)
     .then(result =>{
       const loggUser = result.user;
-      setUser(loggUser)
-      setSuccess('Successfully logged in')
-      navigate(from)
+      console.log(loggUser)
+      navigate('/')
     }).catch(error =>{
       console.log(error.message)
     })
@@ -115,9 +109,9 @@ function Login() {
         <br />
         <button className='btn btn-outline btn-error' onClick={handleGoogleLogin}>Sign in Google</button>
         <button className='btn btn-outline btn-error' onClick={handleGithubLogin}>Sign in Github</button>
-        <p className='text-red-700'>{success} </p>
+
     </form>
-   
+
     </div>
   )
 }
