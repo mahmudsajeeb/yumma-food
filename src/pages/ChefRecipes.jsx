@@ -37,9 +37,9 @@ function ChefRecipes() {
                 <button
                     disabled={isFavorite}
                     onClick={handleFavoriteClick}
-                    className="bg-orange-500 text-white py-2 px-4 rounded cursor-pointer"
+                    className="bg-white-500 shadow-lg text-3xl font-semibold text-black py-2 px-4 rounded cursor-pointer"
                   >
-                    {isFavorite ? "Favorite added" : "Add to Favorites"}
+                    {isFavorite ? "" : "Favorites"}
                   </button>
           </div>
       </div>

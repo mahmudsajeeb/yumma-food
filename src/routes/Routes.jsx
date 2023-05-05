@@ -5,11 +5,14 @@ import Blog from "../pages/Blog";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import ChefRecipes from "../pages/ChefRecipes";
+import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<ErrorPage />,
     children:[
      {
       path:"/",
@@ -31,7 +34,7 @@ const router = createBrowserRouter([
      ,
      {
       path:"/chefrecipes/:id",
-      element:<ChefRecipes />,
+      element:<PrivateRoute><ChefRecipes /></PrivateRoute>,
       loader:({params})=>fetch(`https://server-one-psi-90.vercel.app/chef/${params.id}`)
      }
     ]

@@ -1,7 +1,6 @@
 import React from 'react'
-// import pdfMake from 'pdfmake/build/pdfmake';
-// import pdfFonts from 'pdfmake/build/vfs_fonts';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 function Blog() {
 //   function generatePDF() {
 //   const docDefinition = {
@@ -38,8 +37,15 @@ function Blog() {
 //   pdfMake.createPdf(docDefinition).download();
 // }
   return (
+    
+  
     <>
-      <div className='text-end my-container'>
+   <div className='text-end my-container'>
+   <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button className='btn bg-blue-700 text-white py-2 px-4 rounded' onClick={toPdf}>Download Pdf</button>}
+      </Pdf>
+   </div>
+      <div ref={ref} className='text-end my-container'>
       {/* <button className='btn' onClick={generatePDF}>Generate PDF</button> */}
     </div>
   
@@ -63,6 +69,8 @@ function Blog() {
 
                   Custom hooks are created by prefixing the function name with "use" and using one or more built-in hooks to compose the logic. For example, you might create a custom hook called "useFetch" that uses the "useState" and "useEffect" hooks to fetch data from an API and update the component state:</p>
     </div>
+
+ 
     </>
   )
 }

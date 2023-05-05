@@ -2,8 +2,16 @@
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../Provider/AuthProvider'
   function Navbar() {
-    const {user} = useContext(AuthContext)
+    
+    const {user,logOut} = useContext(AuthContext)
+    const handleLogOut =() =>{
+      logOut()
+      .then()
+      .catch(error =>console.log(error.message))
+    }
    return (
+
+    
      <>
          <div className="my-container navbar bg-base-100">
         <div className="navbar-start">
@@ -56,8 +64,9 @@ import { AuthContext } from '../Provider/AuthProvider'
           <Link to='/login'>
           <button className="btn"> Login</button>
           </Link>} */}
-          <Link to='/login'>  Login 
-          </Link> 
+          { user?<button onClick={handleLogOut} className='btn'><Link to='/login'>  Logout 
+          </Link> </button>:<button className='btn'><Link to='/login'>Login 
+          </Link></button>}
         </div>
         <div>
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

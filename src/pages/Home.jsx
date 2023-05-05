@@ -3,7 +3,13 @@ import './Home.css'
 import LatestArticle from './LatestArticle'
 import Quote from './Quote'
 import Chef from './Chef'
+import LoadingSpinner from './LoadingSpinner'
+import {  useNavigation } from 'react-router-dom'
 function Home() {
+  const navigation = useNavigation() 
+  if (navigation.state === 'loading') {
+    return <LoadingSpinner />
+  }
   return (
     <>
     <div className='banner flex justify-center items-center'>

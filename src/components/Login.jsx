@@ -1,35 +1,64 @@
-import React, { useContext } from 'react' 
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react' 
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-import app from '../firebase.config';
+// import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+// import app from '../firebase.config';
 
 function Login() {
-  const auth = getAuth(app)
-  console.log(app)
-  const {signIn} = useContext(AuthContext)
+  const [success, setSuccess] = useState('')
+  // const auth = getAuth(app)
+  // console.log(app)
+  const location = useLocation()
+  const from = location.state?.pathname || '/'
+  const {signIn,googleLogin,githubLogin,setUser} = useContext(AuthContext)
 
-  const gooleprovider = new GoogleAuthProvider()
-  const handleGoogle =()=>{
-      signInWithPopup(auth,gooleprovider)
-      .then(result =>{
-        const signUser = result.user
-        console.log(signUser)
-      }).catch(error =>{
-        console.log(error,error.message)
-      })
-  }
+ const navigate = useNavigate()
 
-  const githubProvider = new GithubAuthProvider()
-  const handleGithub =()=>{
-    signInWithPopup(auth,githubProvider)
-    .then(result =>{
-      const signUser = result.user
-      console.log(signUser)
-    }).catch(error =>{
-      console.log(error,error.message)
-    })
-  }
+  // const gooleprovider = new GoogleAuthProvider()
+  // const handleGoogle =()=>{
+  //     signInWithPopup(auth,gooleprovider)
+  //     .then(result =>{
+  //       const signUser = result.user
+  //       console.log(signUser)
+  //     }).catch(error =>{
+  //       console.log(error,error.message)
+  //     })
+  // }
+  const handleGoogleLogin = () => {
+    googleLogin()
+        .then(res => {
+            const loggedUser = res.user;
+            setUser(loggedUser)
+            setSuccess('Successfully logged in')
+            navigate(from)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+}
+
+  // const githubProvider = new GithubAuthProvider()
+  // const handleGithub =()=>{
+  //   signInWithPopup(auth,githubProvider)
+  //   .then(result =>{
+  //     const signUser = result.user
+  //     console.log(signUser)
+  //   }).catch(error =>{
+  //     console.log(error,error.message)
+  //   })
+  // }
+  const handleGithubLogin = () => {
+    githubLogin()
+        .then(res => {
+            const loggedUser = res.user;
+            setUser(loggedUser)
+            setSuccess('Successfully logged in')
+            navigate(from)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
   const handleLogin =(e)=>{
     e.preventDefault()
     const form = e.target; 
@@ -40,7 +69,9 @@ function Login() {
     signIn(email,password)
     .then(result =>{
       const loggUser = result.user;
-      console.log(loggUser)
+      setUser(loggUser)
+      setSuccess('Successfully logged in')
+      navigate(from)
     }).catch(error =>{
       console.log(error.message)
     })
@@ -82,11 +113,11 @@ function Login() {
           Don't Have Account?<Link to='/register'>Register</Link>
         </p>
         <br />
-        <button className='btn btn-outline btn-error' onClick={handleGoogle}>Sign in Google</button>
-        <button className='btn btn-outline btn-error' onClick={handleGithub}>Sign in Github</button>
-
+        <button className='btn btn-outline btn-error' onClick={handleGoogleLogin}>Sign in Google</button>
+        <button className='btn btn-outline btn-error' onClick={handleGithubLogin}>Sign in Github</button>
+        <p className='text-red-700'>{success} </p>
     </form>
-
+   
     </div>
   )
 }
