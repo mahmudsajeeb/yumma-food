@@ -60,7 +60,10 @@ function Login() {
     const email = form.email.value; 
     const password = form.password.value;
     console.log( email,password)
-
+    if (!email || !password) {
+      alert('Please enter both email and password.');
+      return;
+    }
     signIn(email,password)
     .then(result =>{
       const loggUser = result.user;
