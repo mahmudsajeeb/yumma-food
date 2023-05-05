@@ -6,7 +6,7 @@ function SingeleChef({chef}) {
     <>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
          
-        <img className="w-96 h-72 " src={image} alt="Card image" />
+        <img className="lg:w-96 lg:h-72 " src={image} alt="Card image" />
         
         <div className="p-4">
           <div className="font-bold text-xl mb-2">{name}</div>

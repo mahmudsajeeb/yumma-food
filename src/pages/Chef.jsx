@@ -19,7 +19,7 @@ function Chef() {
   return (
     <div className="my-container">
     <h1 className="text-center text-4xl mt-9 mb-4">All Chefs</h1>
-      <div className="grid grid-cols-3 gap-4 mb-2">
+      <div className="grid lg:grid-cols-3  gap-4 mb-2">
         {
           chefs.map(chef=>  <SingeleChef chef={chef} key={chef.id} />)
         }

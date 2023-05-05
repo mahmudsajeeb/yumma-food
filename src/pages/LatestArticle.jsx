@@ -7,7 +7,7 @@ function LatestArticle() {
         <h6 className='text-2xl'>KEEP READING</h6>
         <h1  className='text-6xl font-semibold mb-7'>Lates article & news</h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1   sm:grid-cols-4 gap-6">
       <div className="bg-white rounded-lg overflow-hidden shadow-md">
         <img
           src="https://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/greek-salad-and-boiled-eggs--1536x1074.jpg"
